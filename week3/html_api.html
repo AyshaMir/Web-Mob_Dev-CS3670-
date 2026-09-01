@@ -8,17 +8,22 @@
 
     <body>
         <h1>WEB STORAGE API</h1>
-        <p> save your name in the browser using <code>localStorage</code>.</p>
+        <p> save your name and age in the browser using <code>localStorage</code>.</p>
 
         <label for="name">Enter your name:</label>
         <input id = "name" type="text" placeholder="Enter your name">
-        <button id = "saveButton" type = "button">Save name</button>
-        <button id = "clearButton" type = "button">Clear name</button>
+        <label for="age">Enter your age:</label>
+        <input id = "age" type="number" placeholder="Enter your age">
+        <button id = "saveButton" type = "button">Save</button>
+        <button id = "clearButton" type = "button">Clear</button>
         <p id = "message"></p>
+        <p id = "message1"></p>
 
         <script>
             const nameInput = document.getElementById('name');
+            const ageInput = document.getElementById('age');
             const message = document.getElementById('message');
+            const message1 = document.getElementById('message1');
 
             function showSavedName() {
                 const savedName = localStorage.getItem('studentname');
@@ -30,24 +35,43 @@
                     message.textContent = 'No name has been saved yet.';
                 }
             }
+
+            function showSavedAge() {
+                const savedAge = localStorage.getItem('studentage');
+                if (savedAge) {
+                    ageInput.value = savedAge;
+                    message1.textContent = `Your age is ${savedAge}.`;
+                } else {
+                    message1.textContent = 'No age has been saved yet.';
+                }
+            }
             document.getElementById('saveButton').addEventListener('click', () => { //konsa event listen karray, listen then perform activity 
                 const name = nameInput.value.trim(); //remove whitespace from the input value
-                if (name) { 
+                const age = ageInput.value.trim();
+                if (name && age) { 
                     localStorage.setItem('studentname', name); //save the name in local storage
                     showSavedName(); //call the function to show the saved name
+                    showSavedAge(); //call the function to show the saved age
                 } else {
-                    message.textContent = 'Please enter a valid name.';
+                    message.textContent = 'Please enter both a valid name and age.';
+                    message1.textContent = 'Please enter both a valid name and age.';
                 }
             });
 
             document.getElementById('clearButton').addEventListener('click', () => {
                 localStorage.removeItem('studentname'); //remove the name from local storage
+                localStorage.removeItem('studentage'); //remove the age from local storage
                 nameInput.value = ""; //clear the input field
-                message.textContent = "Saved name cleared.";
+                ageInput.value = ""; //clear the age input field
+                message.textContent = "All saved information cleared.";
+                message1.textContent = "All saved information cleared.";
             });
 
             showSavedName(); //call the function to show the saved name when the page loads
+            showSavedAge(); //call the function to show the saved age when the page loads
         </script>
     </body>
 </html>
 
+
+//fix this tomo 
