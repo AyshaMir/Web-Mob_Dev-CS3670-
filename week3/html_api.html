@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML API</title>
+    </head>
+
+    <body>
+        <h1>WEB STORAGE API</h1>
+        <p> save your name in the browser using <code>localStorage</code>.</p>
+
+        <label for="name">Enter your name:</label>
+        <input id = "name" type="text" placeholder="Enter your name">
+        <button id = "saveButton" type = "button">Save name</button>
+        <button id = "clearButton" type = "button">Clear name</button>
+        <p id = "message"></p>
+
+        <script>
+            const nameInput = document.getElementById('name');
+            const message = document.getElementById('message');
+
+            function showSavedName() {
+                const savedName = localStorage.getItem('studentname');
+                if (savedName) {
+                    nameInput.value = savedName;
+                    message.textContent = `Welcome Back, ${savedName}!`;
+                
+                } else {
+                    message.textContent = 'No name has been saved yet.';
+                }
+            }
+            document.getElementById('saveButton').addEventListener('click', () => { //konsa event listen karray, listen then perform activity 
+                const name = nameInput.value.trim(); //remove whitespace from the input value
+                if (name) { 
+                    localStorage.setItem('studentname', name); //save the name in local storage
+                    showSavedName(); //call the function to show the saved name
+                } else {
+                    message.textContent = 'Please enter a valid name.';
+                }
+            });
+
+            document.getElementById('clearButton').addEventListener('click', () => {
+                localStorage.removeItem('studentname'); //remove the name from local storage
+                nameInput.value = ""; //clear the input field
+                message.textContent = "Saved name cleared.";
+            });
+
+            showSavedName(); //call the function to show the saved name when the page loads
+        </script>
+    </body>
+</html>
+
