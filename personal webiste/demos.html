@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayesha Mir - Demos</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Video Demos</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="demos.html" aria-current="page">Demos</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="page-wrapper">
+        <main>
+            <h2>Video Demos</h2>
+            <p>Walkthroughs of my projects, embedded using the YouTube IFrame Player API.</p>
+
+            <div class="video-list">
+                <article class="video-item">
+                    <h3>Computer Architecture Project Video</h3>
+                    <div id="player1"></div>
+                </article>
+
+                <article class="video-item">
+                    <h3>Database Management Project Video</h3>
+                    <div id="player2"></div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ayesha Mir. All rights reserved.</p>
+    </footer>
+
+    <!-- YouTube's JavaScript library -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // YouTube calls this function automatically once its library finishes loading
+        function onYouTubeIframeAPIReady() {
+            // Create a player inside the div with id="player1"
+            new YT.Player('player1', {
+                videoId: 'LzTPtQ7HUB4'
+            });
+
+            // Create a second player inside the div with id="player2"
+            new YT.Player('player2', {
+                videoId: 't2ExwfQh9Co'
+            });
+        }
+    </script>
+
+</body>
+</html>
