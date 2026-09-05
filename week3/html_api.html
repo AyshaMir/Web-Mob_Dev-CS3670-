@@ -45,18 +45,19 @@
                     message1.textContent = 'No age has been saved yet.';
                 }
             }
-            document.getElementById('saveButton').addEventListener('click', () => { //konsa event listen karray, listen then perform activity 
-                const name = nameInput.value.trim(); //remove whitespace from the input value
-                const age = ageInput.value.trim();
-                if (name && age) { 
-                    localStorage.setItem('studentname', name); //save the name in local storage
-                    showSavedName(); //call the function to show the saved name
-                    showSavedAge(); //call the function to show the saved age
-                } else {
-                    message.textContent = 'Please enter both a valid name and age.';
-                    message1.textContent = 'Please enter both a valid name and age.';
-                }
-            });
+            document.getElementById('saveButton').addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const age = ageInput.value.trim();
+            if (name && age) { 
+                localStorage.setItem('studentname', name); //save the name in local storage
+                localStorage.setItem('studentage', age); //save the age in local storage — this line was missing
+                showSavedName();
+                showSavedAge();
+            } else {
+                message.textContent = 'Please enter both a valid name and age.';
+                message1.textContent = 'Please enter both a valid name and age.';
+            }
+        });
 
             document.getElementById('clearButton').addEventListener('click', () => {
                 localStorage.removeItem('studentname'); //remove the name from local storage
@@ -72,6 +73,3 @@
         </script>
     </body>
 </html>
-
-
-//fix this tomo 
